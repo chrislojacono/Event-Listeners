@@ -95,83 +95,60 @@ const pies = [
     iceCream: "none",
   },
 ];
-const buttonEvents = () => {
-    document
-      .querySelector("#instructor-buttons")
-      .addEventListener("click", handleButtonClick);
-      document.querySelector('pies').addEventListener('click', deleteItems)
-  };
 
 const handleButtonClick = (e) => {
   const buttonId = e.target.id;
 
   const selectedPies = [];
 
-  for(let i = 0; i < pies.length; i++){
-      if(pies[i].instructor === buttonId){
-          selectedPies.push(pies[i])
-      }
-  }
-
-  const bodySelector = document.querySelector('body')
-
-
-  if(buttonId === 'Abbey'){
-      bodySelector.style.backgroundColor = 'goldenrod'
-  }
-  else if(buttonId === 'Doc'){
-      bodySelector.style.backgroundColor = 'purple'
-  }
-  else if(buttonId === 'Jacob'){
-      bodySelector.style.backgroundColor = 'green'
-  }
-  else{
-      bodySelector.style.backgroundColor = 'aquamarine'
-  }
-
-  if(buttonId === 'All' || buttonId === e.currentTarget.id){
-    if(buttonId === 'All'){
-        pieBuilder(pies)
-    }else{
-    pieBuilder(selectedPies);
+  for (let i = 0; i < pies.length; i++) {
+    if (pies[i].instructor === buttonId) {
+      selectedPies.push(pies[i]);
     }
   }
-  if(buttonId === 'All'){
-    pieBuilder(pies)
-}else{
-pieBuilder(selectedPies);
-}
-};
 
+  const bodySelector = document.querySelector("body");
+// CHANGE BG COLOR
+  if (buttonId === "Abbey") {
+    bodySelector.style.backgroundColor = "#e76f51";
+  } else if (buttonId === "Doc") {
+    bodySelector.style.backgroundColor = "#f4a261";
+  } else if (buttonId === "Jacob") {
+    bodySelector.style.backgroundColor = "#264653";
+  } else {
+    bodySelector.style.backgroundColor = "aquamarine";
+  }
 
-const deleteItems = (e)=>{
+  if (buttonId === "All" || buttonId === e.currentTarget.id) {
     
-
-    const ctype = e.target.type;
-    const target = e.target.id;
-
-    if(ctype === 'button'){
-      pies.splice(target, 1); 
-      
       pieBuilder(pies);
+    } else {
+      pieBuilder(selectedPies);
     }
-}
+  }
+;
 
+const deleteItems = (e) => {
+  const ctype = e.target.type;
+  const target = e.target.id;
 
+  if (ctype === "button") {
+    pies.splice(target, 1);
 
-
+    pieBuilder(pies);
+  }
+};
 
 const printToDom = (divId, textToPrint) => {
   const selectedDiv = document.getElementById(divId);
   selectedDiv.innerHTML = textToPrint;
 };
 
-
 const pieBuilder = (monkeyButts) => {
   let domString = "";
   for (let i = 0; i < monkeyButts.length; i++) {
     domString += `<div class="card my-2" style="width: 18rem;" id="${i}">
-                    <div class"img-container" style="background-image: url('${monkeyButts[i].imageUrl}')">
+                    <div class="img-container" style="background-image: url(${monkeyButts[i].imageUrl})">
                     </div>
                     <div class="card-body">
                     <p class="card-text">${monkeyButts[i].name}</p>
@@ -180,19 +157,17 @@ const pieBuilder = (monkeyButts) => {
                 </div>`;
   }
 
-  printToDom('pies', domString)
+  printToDom("pies", domString);
 };
 
 const buttonEvents = () => {
-    document
-      .querySelector("#instructor-buttons")
-      .addEventListener("click", handleButtonClick);
-      document.querySelector('pies').addEventListener('click', deleteItems)
-  };
+  document.querySelector("#instructor-buttons").addEventListener("click", handleButtonClick);
+  document.querySelector("#pies").addEventListener("click", deleteItems);
+};
 const init = () => {
   buttonEvents();
   pieBuilder(pies);
-  deleteItems(pies)
+ 
 };
 
 init();

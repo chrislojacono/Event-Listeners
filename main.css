@@ -3,3 +3,18 @@
     background-size: cover;
     background-position: center;
 }
+.jumbotron{
+    background-color:#ade8f4;
+}
+.display-4{
+    font-size: 100px;
+}
+body{
+    background-color: deepskyblue;
+}
+.lead{
+    text-align: center;
+}
+.navbar{
+    background-color: deepskyblue;
+}
